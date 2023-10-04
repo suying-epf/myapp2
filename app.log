@@ -1,0 +1,81 @@
+2023-10-04 14:13:08,659 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-04 14:13:08,659 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-04 14:13:08,947 - INFO -  * Restarting with watchdog (fsevents)
+2023-10-04 14:13:09,071 - WARNING -  * Debugger is active!
+2023-10-04 14:13:09,127 - INFO -  * Debugger PIN: 705-757-120
+2023-10-04 14:14:41,530 - INFO -  * Detected change in '/Users/suying/Desktop/data_source/TP1/main.py', reloading
+2023-10-04 14:14:41,551 - INFO -  * Detected change in '/Users/suying/Desktop/data_source/TP1/main.py', reloading
+2023-10-04 14:14:42,598 - INFO -  * Restarting with watchdog (fsevents)
+2023-10-04 14:14:42,766 - WARNING -  * Debugger is active!
+2023-10-04 14:14:42,777 - INFO -  * Debugger PIN: 705-757-120
+2023-10-04 14:14:44,669 - INFO -  * Detected change in '/Users/suying/Desktop/data_source/TP1/main.py', reloading
+2023-10-04 14:14:45,718 - INFO -  * Restarting with watchdog (fsevents)
+2023-10-04 14:14:45,854 - WARNING -  * Debugger is active!
+2023-10-04 14:14:45,864 - INFO -  * Debugger PIN: 705-757-120
+2023-10-04 14:21:33,757 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-04 14:21:33,758 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-04 14:24:01,096 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-04 14:24:01,097 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-04 14:24:38,226 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-04 14:24:38,227 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-04 14:25:30,168 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-04 14:25:30,169 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-04 14:26:39,412 - INFO - 127.0.0.1 - - [04/Oct/2023 14:26:39] "GET / HTTP/1.1" 200 -
+2023-10-04 14:26:39,736 - INFO - 127.0.0.1 - - [04/Oct/2023 14:26:39] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2023-10-04 14:26:45,030 - INFO - 127.0.0.1 - - [04/Oct/2023 14:26:45] "GET / HTTP/1.1" 200 -
+2023-10-04 14:26:49,405 - INFO - This is a log message from /logger
+2023-10-04 14:26:49,407 - INFO - 127.0.0.1 - - [04/Oct/2023 14:26:49] "GET /logger HTTP/1.1" 200 -
+2023-10-04 14:29:25,907 - INFO - 127.0.0.1 - - [04/Oct/2023 14:29:25] "GET / HTTP/1.1" 200 -
+2023-10-04 14:29:29,668 - INFO - 127.0.0.1 - - [04/Oct/2023 14:29:29] "GET / HTTP/1.1" 200 -
+2023-10-04 14:29:30,934 - INFO - This is a log message from /logger
+2023-10-04 14:29:30,935 - INFO - 127.0.0.1 - - [04/Oct/2023 14:29:30] "GET /logger HTTP/1.1" 200 -
+2023-10-04 14:32:31,820 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-04 14:32:31,821 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-04 14:33:44,380 - INFO - This is a log message from /logger
+2023-10-04 14:33:44,383 - INFO - 127.0.0.1 - - [04/Oct/2023 14:33:44] "GET /logger HTTP/1.1" 200 -
+2023-10-04 14:37:07,090 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-04 14:37:07,091 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-04 14:37:24,285 - INFO - This is a log message from /logger
+2023-10-04 14:37:24,288 - INFO - 127.0.0.1 - - [04/Oct/2023 14:37:24] "GET /logger HTTP/1.1" 200 -
+2023-10-04 14:43:41,969 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-04 14:43:41,969 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-04 14:56:15,259 - INFO - 127.0.0.1 - - [04/Oct/2023 14:56:15] "GET / HTTP/1.1" 200 -
+2023-10-04 14:56:20,655 - INFO - 127.0.0.1 - - [04/Oct/2023 14:56:20] "GET / HTTP/1.1" 200 -
+2023-10-04 14:56:21,793 - INFO - This is a server-side log.
+2023-10-04 14:56:21,793 - WARNING - Ying SU
+2023-10-04 14:56:21,794 - INFO - 127.0.0.1 - - [04/Oct/2023 14:56:21] "GET /logger HTTP/1.1" 200 -
+2023-10-04 14:58:22,310 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-04 14:58:22,311 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-04 15:05:28,301 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8081
+2023-10-04 15:05:28,302 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-04 15:05:28,302 - INFO -  * Restarting with stat
+2023-10-04 15:05:28,429 - WARNING -  * Debugger is active!
+2023-10-04 15:05:28,460 - INFO -  * Debugger PIN: 215-449-771
+2023-10-04 15:07:01,435 - INFO -  * Detected change in '/Users/suying/Desktop/data_source/TP1/main.py', reloading
+2023-10-04 15:07:01,468 - INFO -  * Restarting with stat
+2023-10-04 15:07:01,644 - WARNING -  * Debugger is active!
+2023-10-04 15:07:01,655 - INFO -  * Debugger PIN: 215-449-771
+2023-10-04 15:07:56,202 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8081
+2023-10-04 15:07:56,202 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-04 15:07:56,203 - INFO -  * Restarting with stat
+2023-10-04 15:07:56,324 - WARNING -  * Debugger is active!
+2023-10-04 15:07:56,336 - INFO -  * Debugger PIN: 215-449-771
+2023-10-04 15:08:21,618 - INFO -  * Detected change in '/Users/suying/Desktop/data_source/TP1/main.py', reloading
+2023-10-04 15:08:21,659 - INFO -  * Restarting with stat
+2023-10-04 15:08:21,822 - WARNING -  * Debugger is active!
+2023-10-04 15:08:21,833 - INFO -  * Debugger PIN: 215-449-771
+2023-10-04 15:08:23,864 - INFO -  * Detected change in '/Users/suying/Desktop/data_source/TP1/main.py', reloading
+2023-10-04 15:08:23,893 - INFO -  * Restarting with stat
+2023-10-04 15:08:24,033 - WARNING -  * Debugger is active!
+2023-10-04 15:08:24,043 - INFO -  * Debugger PIN: 215-449-771
