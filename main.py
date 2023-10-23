@@ -1,7 +1,4 @@
-from flask import Flask, request, render_template, make_response, jsonify
-import logging,requests
 from google.oauth2 import service_account
-from googleapiclient.discovery import build
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.oauth2 import service_account
 from google.analytics.data_v1beta.types import (
@@ -10,132 +7,110 @@ from google.analytics.data_v1beta.types import (
     Metric,
     RunReportRequest,
 )
+import logging,requests,sys
+from html import unescape
+from flask import Flask, render_template, request
+import json
+from datetime import datetime,timedelta
+from pytrends.request import TrendReq
 
 
 
+# Create a Flask web application
 app = Flask(__name__)
-@app.route("/")
-def root():
-    return """ 
-   <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Hello from Space  🚀 !</title>
-            
-           <!-- Google tag (gtag.js) -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJVVD9G9FC"></script>
-            <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
 
-            gtag('config', 'G-MJVVD9G9FC');
-            </script>
-        </head>
-        <body>
-            <h1>Hello from Space! 🚀</h1>
-            <button id="analyticsButton">Click me to send an event</button>
-                <form action="/logger" method="GET">
+# Configure logging
+logging.basicConfig(level=logging.INFO, handlers=[logging.StreamHandler(sys.stdout)])
+logger = logging.getLogger(__name__)
+logs = []
 
-        <button type="submit">Go to logger </button>
-    
-    </form>
-            <script>
-                document.getElementById("analyticsButton").addEventListener("click", function () {
-                    gtag('event', 'button_click', {
-                        'event_category': 'Button',
-                        'event_label': 'Button Clicked'
-                    });
-                });
-            </script>
-        </body>
-        </html>
-    """
 
-@app.route("/logger", methods=["GET"])
-def logger():
-
-    # Log on the server side (Python)
-
-    logging.info("This is a server-side log.")
-    logging.warning('Ying SU')
-
-    # Log on the browser side
-
-    log_script = """
-
-    <script>
-
-      console.log("This is a browser-side log.");
-
-    </script>
-
-    """
-    return render_template('textbox.html',user_message = "je suis Ying")
-
-@app.route("/make_google_request", methods=["GET"])
-def make_google_request():
-    try:
-        # Make a request to Google
-        response = requests.get("https://www.google.com/")
-
-        # Check if the request was successful
-        if response.status_code == 200:
-            return response.cookies.get_dict()
-        else:
-            return "Google request failed with status code: " + str(response.status_code)
-
-    except Exception as e:
-        return "An error occurred: " + str(e)
-    
-@app.route("/make_google_analytics_request", methods=["GET"])
-def make_google_analytics_request():
-    try:
-        # Make a request to Google
-        response = requests.get("https://analytics.google.com/analytics/web/#/p407449646/reports/intelligenthome")
-
-        # Check if the request was successful
-        if response.status_code == 200:
-            return response.cookies.get_dict()
-        else:
-            return "Google Analytics request failed with status code: " + str(response.status_code)
-
-    except Exception as e:
-        return "An error occurred: " + str(e)
-
-################################################################
-    
-# Load Google Analytics API credentials from a JSON key file
 credentials = service_account.Credentials.from_service_account_file(
-    'ga4-project-402014-54f684c5ca17.json',
-    scopes=['https://www.googleapis.com/auth/analytics.readonly']
+    'ga4-project-402014-54f684c5ca17.json', scopes=['https://www.googleapis.com/auth/analytics.readonly']
 )
-analytics = build('analyticsreporting', 'v4', credentials=credentials)
 
-@app.route("/get_google_analytics_data", methods=["GET"])
-def get_google_analytics_data():
-    # Fetch data from Google Analytics
-    response = analytics.reports().batchGet(
-        body={
-            'reportRequests': [
-                {
-                    'viewId': '407449646',
-                    'dateRanges': [{'startDate': '7daysAgo', 'endDate': 'today'}],
-                    'metrics': [{'expression': 'ga:users'}]
-                }
-            ]
+
+def sample_run_report():
+    """Runs a simple report on a Google Analytics 4 property."""
+    user_count = 0
+    property_id = "407449646"
+    client = BetaAnalyticsDataClient(credentials=credentials)
+
+    request = RunReportRequest(
+        property=f"properties/{property_id}",
+        dimensions=[Dimension(name="country")],
+        metrics=[Metric(name="activeUsers")],
+        date_ranges=[DateRange(start_date="2023-03-31", end_date="today")],
+    )
+    response = client.run_report(request)
+
+    for row in response.rows:
+        user_count += int(row.metric_values[0].value)
+
+    return user_count
+
+# Define a route for the homepage
+@app.route('/')
+def root():
+    return render_template("index.html")
+
+@app.route('/logger', methods=['GET', 'POST'])
+def logger_page():
+    log_message ='This a log message'
+    logger.info('This is a log message!')
+    response_message = "This is a response"
+    user_count = sample_run_report()
+    
+    if request.method == 'POST' and 'log_message' in request.form:
+        log_message = request.form.get('log_message')
+        logger.info(log_message)
+        # return render_template('logger.html', logs=log_message)
+    
+    if request.method == 'POST' and request.form.get('action') == 'Google':
+            response = requests.get("https://www.google.com")  
+            if response.status_code == 200:
+                response_message = response.cookies.get_dict()
+            else:
+                response_message = "Request to Google failed."
+            
+            # return render_template("logger.html", logs=log_message,response_message=response_message)
+    
+    if request.method == 'POST' and request.form.get('action') == 'ganalytics':
+        response = requests.get("https://analytics.google.com/analytics/web/#/p407490614/reports/intelligenthome")
+        if response.status_code == 200:
+            response_message = response.text
+        else:
+            response_message = "Request to Google failed."
+
+        # return render_template("logger.html", logs=log_message,response_message=response_message)
+    
+    return render_template("logger.html", logs=log_message,response_message=response_message, user_count=user_count)
+    
+# Initialize pytrends
+pytrends = TrendReq(hl='en-US', tz=360)
+
+def get_google_trends(keywords, start_date, end_date):
+    pytrends.build_payload(keywords, cat=0, timeframe=f'{start_date} {end_date}', geo='', gprop='')
+    return pytrends.interest_over_time()
+
+@app.route('/trends', methods=['GET', 'POST'])
+def trends_page():
+    data = {}
+    keywords = ["Apple", "Orange"]  # replace with your desired keywords
+    if request.method == 'POST':
+        today = datetime.now().date()
+        start_date = today - timedelta(days=90)
+        df = get_google_trends(keywords, start_date.strftime("%Y-%m-%d"), today.strftime("%Y-%m-%d"))
+        print("df=",df)
+        data = {
+            'dates': list(df.index.strftime('%Y-%m-%d')),
+            'values': {keyword: list(df[keyword]) for keyword in keywords}
         }
-    ).execute()
-
-    # Extract and display the number of users (visitors)
-    data = response['reports'][0]['data']
-    user_count = data['totals'][0]['values'][0]
-
-    return f"Number of Visitors: {user_count}"
+        print("data=",data)
+    data_json = json.dumps(data)
+    return render_template("trends.html", data_json=data_json)
 
 
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080)
+# Run the application
+if __name__ == '__main__':
+    app.run(debug=True)
